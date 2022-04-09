@@ -67,9 +67,9 @@ const mouseHandler = (e:TouchEvent | MouseEvent, type: EventEnum) => {
       if (key) {
         key = key.toLocaleLowerCase()
       }
-      tremble()
       emits(type, key)
       if (type === EventEnum.Down) {
+        tremble()
         downKey = key
       } else {
         if (key === 'capslock' && key === downKey) {

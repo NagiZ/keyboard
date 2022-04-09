@@ -21,10 +21,10 @@ const renderKeyboardMain = () => {
   keyboard.value = new Keyboard('.simple-keyboard-main', {
     ...commonKeyboardOptions,
     // layoutName: 'fullKeyboard',
-    onKeyPress: (button:string) => {
-      if (button === "{capslock}")
-      handleShift();
-    },
+    // onKeyPress: (button:string) => {
+    //   if (button === "{capslock}")
+    //   handleShift();
+    // },
     ...configMain
   })
 }
@@ -50,7 +50,7 @@ onMounted(() => {
   renderKeyboardCtrl()
   renderKeyboardArrow()
 })
-
+let downKey = ''
 const mouseHandler = (e:TouchEvent | MouseEvent, type: EventEnum) => {
   e.preventDefault()
   e.stopPropagation()
@@ -69,7 +69,14 @@ const mouseHandler = (e:TouchEvent | MouseEvent, type: EventEnum) => {
       }
       tremble()
       emits(type, key)
-      // send(key, type)
+      if (type === EventEnum.Down) {
+        downKey = key
+      } else {
+        if (key === 'capslock' && key === downKey) {
+          handleShift()
+        }
+        downKey = ''
+      }
     }
   }
 }
@@ -78,8 +85,8 @@ const mouseHandler = (e:TouchEvent | MouseEvent, type: EventEnum) => {
 
 <template>
   <div class="keyboard-container"
-    @mousedown="mouseHandler($event, EventEnum.Down)"
-    @mouseup="mouseHandler($event, EventEnum.Up)"
+    @mousedown.capture="mouseHandler($event, EventEnum.Down)"
+    @mouseup.capture="mouseHandler($event, EventEnum.Up)"
     @touchstart="mouseHandler($event, EventEnum.Down)"
     @touchend="mouseHandler($event, EventEnum.Up)"
   >

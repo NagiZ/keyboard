@@ -1,6 +1,7 @@
 <script lang="ts">
 import { onMounted, ref } from 'vue';
 import Keyboard from 'simple-keyboard'
+import { tremble } from '../utils/index'
 import { commonKeyboardOptions, EventEnum, configMain, configCtrl, configArrow, getLayoutKey } from './config';
 export default {
   name: 'VirtualKeyboard'
@@ -63,6 +64,7 @@ const mouseHandler = (e:TouchEvent | MouseEvent, type: EventEnum) => {
         const regRes = reg.exec(btn)
         key = regRes ? regRes[1] : btn
       }
+      tremble()
       emits(type, key)
       // send(key, type)
     }

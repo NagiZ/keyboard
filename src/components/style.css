@@ -3,6 +3,7 @@
   background-color: rgba(0, 0, 0, 0.1);
   justify-content: center;
   min-width: 810px;
+  width: 100%;
   margin: 0 auto;
   border-radius: 5px;
 }
@@ -12,7 +13,7 @@
 }
 
 .simple-keyboard-main.simple-keyboard {
-  flex: 1 1 720px;
+  flex: 1 1 80%;
   min-width: 640px;
   background-color: transparent;
 }
@@ -51,6 +52,7 @@
 }
 
 .control-arrows {
+  flex: 1 1 20%;
   display: flex;
   align-items: center;
   justify-content: space-between;

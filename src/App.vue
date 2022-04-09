@@ -87,6 +87,10 @@ const onKeyup= (key: string) => {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
 }
 .ws-setter {
   display: flex;

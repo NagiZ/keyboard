@@ -64,6 +64,9 @@ const mouseHandler = (e:TouchEvent | MouseEvent, type: EventEnum) => {
         const regRes = reg.exec(btn)
         key = regRes ? regRes[1] : btn
       }
+      if (key) {
+        key = key.toLocaleLowerCase()
+      }
       tremble()
       emits(type, key)
       // send(key, type)
